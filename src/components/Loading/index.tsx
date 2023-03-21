@@ -1,6 +1,6 @@
 export function Loading():JSX.Element {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center h-full w-full">
       <svg
         className="animate-spin h-10 w-10 text-gray-500"
         xmlns="http://www.w3.org/2000/svg"
