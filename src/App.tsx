@@ -1,7 +1,14 @@
+import { Suspense } from 'react';
+import { Header, Main, Modal, Footer } from './components';
+
 function App() {
   return (
-    <div className="App bg-red-400">
-      TESTE
+    <div className="flex flex-col h-full">
+      <Header />
+      <Main />
+
+      <Footer />
+      <Modal />
     </div>
   )
 }

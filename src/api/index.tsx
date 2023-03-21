@@ -1,4 +1,5 @@
 import md5 from "md5"
+import { MarvelResource } from './types';
 
 const PRIVATE_KEY = import.meta.env.VITE_PRIVATE_KEY
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY
@@ -8,7 +9,7 @@ const hash = md5(timeStamp.toString() + PRIVATE_KEY + PUBLIC_KEY)
 const server = "https://gateway.marvel.com/v1/public/"
 
 const getMarvelData = async (
-  resource: string,
+  resource: MarvelResource,
   options?: string | undefined | null
 ) => {
   const url = new URL(`${server}${resource}`)
