@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { Header, Main, Modal, Footer } from './components';
 
 function App() {

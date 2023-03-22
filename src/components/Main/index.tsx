@@ -1,5 +1,5 @@
 import { useAtom, useSetAtom } from 'jotai';
-import { loadableQuadrinhosList, pagination } from '../../state';
+import { loadableComicsList, pagination } from '../../state';
 import { ComicsCard } from '../ComicsCard';
 import { Loading } from '../Loading';
 import { Error } from '../Error';
@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 import { Comics } from 'api/types';
 
 export function Main():JSX.Element {
-  const [list] = useAtom(loadableQuadrinhosList)
+  const [asyncComicsList] = useAtom(loadableComicsList)
   const setPage = useSetAtom(pagination)
-  const [quadrinhos, setQuadrinhos] = useState<Comics[]>([])
+  const [comics, setComics] = useState<Comics[]>([])
 
   useEffect(() => {
     const endOfPageObserver = () => {
@@ -21,23 +21,20 @@ export function Main():JSX.Element {
     return () => {
       window.removeEventListener('scroll', endOfPageObserver)
     }
-
   }, [])
 
   useEffect(() => {
-    if (list.state === 'hasData') {
-      setQuadrinhos(prev => [...prev, ...list.data])
+    if (asyncComicsList.state === 'hasData') {
+      setComics(prev => [...prev, ...asyncComicsList.data])
     }
-  }, [list.state])
+  }, [asyncComicsList.state])
 
-  if (list.state === 'hasError') return <Error />
+  if (asyncComicsList.state === 'hasError') return <Error />
 
   return (
-    <>
-      <main className='grid gap-4 grid-cols-4'>
-        {quadrinhos.map(comics => <ComicsCard comics={comics} key={comics.id}/>)}
-        {list.state === 'loading' && <Loading />}
-      </main>
-    </>
+    <main className='grid gap-4 grid-cols-4'>
+      {comics.map(comics => <ComicsCard comics={comics} key={comics.id}/>)}
+      {asyncComicsList.state === 'loading' && <Loading />}
+    </main>
   )
 }

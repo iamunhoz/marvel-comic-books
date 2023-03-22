@@ -6,3 +6,10 @@
 #root {
   height: 100vh;
 }
+
+.text-ellipsis-three-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
