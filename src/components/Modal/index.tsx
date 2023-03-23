@@ -50,8 +50,12 @@ export function Modal(): JSX.Element {
 
           <Tab.Group>
             <Tab.List>
-              <Tab>Detalhes</Tab>
-              <Tab>Envio</Tab>
+              <Tab className='ui-selected:bg-blue-500 ui-selected:text-white ui-not-selected:bg-white ui-not-selected:text-black'>
+                Detalhes
+              </Tab>
+              <Tab className='ui-selected:bg-blue-500 ui-selected:text-white ui-not-selected:bg-white ui-not-selected:text-black'>
+                Envio
+              </Tab>
             </Tab.List>
             <Tab.Panels>
               <Tab.Panel>
@@ -62,21 +66,6 @@ export function Modal(): JSX.Element {
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
-        </div>
-        <div className='flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50'>
-          <button
-            type='button'
-            className='inline-block rounded bg-blue-100 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-blue-accent-100 focus:bg-blue-accent-100 focus:outline-none focus:ring-0 active:bg-blue-accent-200'
-            onClick={closeModal}
-          >
-            Close
-          </button>
-          <button
-            type='button'
-            className='ml-1 inline-block rounded bg-blue px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blue-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-blue-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-blue-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]'
-          >
-            Save changes
-          </button>
         </div>
       </div>
     </div>

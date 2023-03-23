@@ -13,11 +13,13 @@
     "@react-google-maps/api": "^2.18.1",
     "add": "^2.0.6",
     "jotai": "^2.0.3",
+    "jotai-form": "^0.1.0",
     "md5": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@types/md5": "^2.3.2",
