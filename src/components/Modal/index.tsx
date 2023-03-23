@@ -16,6 +16,19 @@ export function Modal(): JSX.Element {
 
   if (!showModal || !comics) return <></>
 
+  /* return (
+    <Tab.Group>
+      <Tab.List>
+        <Tab>Detalhes</Tab>
+        <Tab>Envio</Tab>
+      </Tab.List>
+      <Tab.Panels>
+        <Tab.Panel>Content 1</Tab.Panel>
+        <Tab.Panel><Map /></Tab.Panel>
+      </Tab.Panels>
+    </Tab.Group>
+  ) */
+
   return (
     <div className='fixed top-10 p-5 left-0 z-50 h-full w-full overflow-y-auto overflow-x-hidden outline-none'>
       <div className='pointer-events-none relative w-auto translate-y-[-50px] transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[1000px]'>
