@@ -10,9 +10,7 @@ const server = "https://gateway.marvel.com/v1/public/"
 const resultsPerPage = 10
 const getOffset = (pag: number): string => {
   if (pag < 2) return '0'
-
   return ((pag - 1) * resultsPerPage).toString()
-
 }
 
 const getMarvelData = async (

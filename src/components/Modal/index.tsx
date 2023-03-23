@@ -1,5 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai'
+import { Tab } from '@headlessui/react'
 import { selectedComics, showComicsModal } from '../../state';
+import Map from './Map';
 
 export function Modal():JSX.Element {
   const [showModal, setShowModal] = useAtom(showComicsModal)
@@ -11,6 +13,20 @@ export function Modal():JSX.Element {
   }
 
   if (!showModal || !comics) return <></>
+
+  /* return (
+    <Tab.Group>
+      <Tab.List>
+        <Tab>Detalhes</Tab>
+        <Tab>Envio</Tab>
+      </Tab.List>
+      <Tab.Panels>
+        <Tab.Panel>Content 1</Tab.Panel>
+        <Tab.Panel><Map /></Tab.Panel>
+      </Tab.Panels>
+    </Tab.Group>
+  ) */
+
 
   return (
     <div className="fixed top-10 p-5 left-0 z-50 h-full w-full overflow-y-auto overflow-x-hidden outline-none">
