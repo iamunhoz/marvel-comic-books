@@ -4,10 +4,8 @@ import { ComicsCard, Loading, Error } from 'components'
 import { useEffect, useState } from 'react'
 import { Comics } from 'api/types'
 
-export function Main(): JSX.Element {
-  const [asyncComicsList] = useAtom(loadableComicsList)
+export const useEndOfPageObserver = () => {
   const setPage = useSetAtom(pagination)
-  const [comics, setComics] = useState<Comics[]>([])
 
   useEffect(() => {
     const endOfPageObserver = () => {
@@ -23,6 +21,13 @@ export function Main(): JSX.Element {
       window.removeEventListener('scroll', endOfPageObserver)
     }
   }, [])
+}
+
+export function Main(): JSX.Element {
+  const [asyncComicsList] = useAtom(loadableComicsList)
+  const [comics, setComics] = useState<Comics[]>([])
+
+  useEndOfPageObserver()
 
   useEffect(() => {
     if (asyncComicsList.state === 'hasData') {

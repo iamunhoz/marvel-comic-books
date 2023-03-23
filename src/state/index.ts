@@ -4,13 +4,15 @@ import { atom } from 'jotai'
 import { loadable } from 'jotai/utils'
 
 // busca dados na api da marvel e salva no state
-export const asyncQuadList = atom<Promise<Comics[]>>(async (get) => {
-  const page = get(pagination)
-  return getMarvelData({ resource: 'comics', page }).then(
-    (res) => res.data.results as Comics[]
-  )
-})
-export const loadableComicsList = loadable(asyncQuadList)
+export const loadableComicsList = loadable(
+  atom<Promise<Comics[]>>(async (get) => {
+    const page = get(pagination)
+    const comics = await getMarvelData({ resource: 'comics', page })
+
+    if (!comics) return []
+    return comics
+  })
+)
 
 // filtros e paginação para busca de dados
 export const ComicsSearchValue = atom('')
