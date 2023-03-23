@@ -1,8 +1,8 @@
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import Geocode from 'react-geocode'
 import React from 'react'
-import { useAtom, useSetAtom } from 'jotai'
-import { destinationAddress } from 'state'
+import { useAtom } from 'jotai'
+import { addressAtom } from 'components/forms/FormDelivery/form-fields/formState'
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
@@ -29,10 +29,7 @@ const getAddressFromLatLng = (coords: Coords) => {
 
   return Geocode.fromLatLng(latitude, longitude).then(
     (response) => {
-      const address = response.results[0].formatted_address as string
-
-      console.log('GEOCODE response', response)
-      return address
+      return response.results[0].formatted_address as string
     },
     (error) => {
       console.error(error)
@@ -52,7 +49,7 @@ const center = {
 }
 
 function EmbeddedMap() {
-  const [address, setAddress] = useAtom(destinationAddress)
+  const [address, setAddress] = useAtom(addressAtom)
 
   const setAddressFromCoordinates = async (evt: google.maps.MapMouseEvent) => {
     const coordinates = getLatLng(evt)
@@ -61,24 +58,17 @@ function EmbeddedMap() {
   }
 
   return (
-    <div className='flex w-100'>
-      <div className='border p-3'>
-        <LoaderContainer>
-          <GoogleMap
-            onClick={setAddressFromCoordinates}
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={10}
-          >
-            Child components, such as markers, info windows, etc.
-            <></>
-          </GoogleMap>
-        </LoaderContainer>
-      </div>
-      <div className='border p-3 w-50'>
-        <input value={address} className='border' />
-      </div>
-    </div>
+    <LoaderContainer>
+      <GoogleMap
+        onClick={setAddressFromCoordinates}
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+      >
+        Child components, such as markers, info windows, etc.
+        <></>
+      </GoogleMap>
+    </LoaderContainer>
   )
 }
 

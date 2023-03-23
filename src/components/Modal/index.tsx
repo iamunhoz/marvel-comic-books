@@ -3,6 +3,7 @@ import { Tab } from '@headlessui/react'
 import { selectedComics, showComicsModal } from '../../state'
 import Map from './Map'
 import { Details } from './Details'
+import { Delivery } from './Delivery'
 
 export function Modal(): JSX.Element {
   const [showModal, setShowModal] = useAtom(showComicsModal)
@@ -51,10 +52,10 @@ export function Modal(): JSX.Element {
           <Tab.Group>
             <Tab.List>
               <Tab className='ui-selected:bg-blue-500 ui-selected:text-white ui-not-selected:bg-white ui-not-selected:text-black'>
-                Detalhes
+                Details
               </Tab>
               <Tab className='ui-selected:bg-blue-500 ui-selected:text-white ui-not-selected:bg-white ui-not-selected:text-black'>
-                Envio
+                Delivery
               </Tab>
             </Tab.List>
             <Tab.Panels>
@@ -62,7 +63,7 @@ export function Modal(): JSX.Element {
                 <Details />
               </Tab.Panel>
               <Tab.Panel>
-                <Map />
+                <Delivery />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
