@@ -7,7 +7,7 @@ const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY
 const timeStamp = Date.now()
 const hash = md5(timeStamp.toString() + PRIVATE_KEY + PUBLIC_KEY)
 const server = 'https://gateway.marvel.com/v1/public/'
-const resultsPerPage = 10
+const resultsPerPage = 12
 const getOffset = (pag: number): string => {
   if (pag < 2) return '0'
   return ((pag - 1) * resultsPerPage).toString()

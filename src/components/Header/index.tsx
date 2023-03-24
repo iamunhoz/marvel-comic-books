@@ -11,14 +11,14 @@ export function Header(): JSX.Element {
     }
   }
   return (
-    <header className='bg-blue-500 h-12 fixed w-full flex justify-around items-center'>
-      <h1 className='text-center text-yellow-50 text-xl font-bold'>
+    <header className='bg-blue-500 h-12 fixed w-full z-20 flex justify-around items-center'>
+      <h1 className='text-center text-yellow-50 lg:text-xl font-bold'>
         Consulta de Quadrinhos Marvel
       </h1>
       <div className='flex items-center rounded'>
         <input
           value={searchValue}
-          className='bg-blue-300 text-yellow-50 p-1 rounded-l'
+          className='bg-blue-300 text-yellow-50 p-1 rounded-l w-24 lg:w-48'
           onChange={(evt) => {
             setSearchValue(evt.target.value)
           }}
