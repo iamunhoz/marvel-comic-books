@@ -17,10 +17,10 @@ export function ComicsCard(props: ComicsCardProps): JSX.Element {
   }
 
   return (
-    <div className='h-full mx-auto'>
+    <div className='h-full mx-auto w-full'>
       <div className='bg-white h-full shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700'>
         <img
-          className='rounded-t-lg'
+          className='rounded-t-lg w-full'
           src={`${comics.thumbnail.path}.${comics.thumbnail.extension}`}
           alt=''
           style={{
