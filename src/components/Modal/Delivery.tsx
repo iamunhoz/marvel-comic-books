@@ -3,7 +3,7 @@ import Map from './Map'
 
 export function Delivery(): JSX.Element {
   return (
-    <div className='flex gap-2'>
+    <div className='flex gap-4'>
       <Map />
       <FormDelivery />
     </div>

@@ -16,8 +16,9 @@ const getOffset = (pag: number): string => {
 const getMarvelData = async (config: {
   resource: MarvelResource
   page: number
+  searchValue?: string
 }) => {
-  const { resource, page } = config
+  const { resource, page, searchValue } = config
 
   const url = new URL(`${server}${resource}`)
   url.searchParams.set('ts', timeStamp.toString())
@@ -25,6 +26,10 @@ const getMarvelData = async (config: {
   url.searchParams.set('apikey', PUBLIC_KEY)
   url.searchParams.set('hash', hash)
   url.searchParams.set('offset', getOffset(page))
+
+  if (searchValue) {
+    url.searchParams.set('titleStartsWith', searchValue)
+  }
 
   try {
     const request = await fetch(url, {

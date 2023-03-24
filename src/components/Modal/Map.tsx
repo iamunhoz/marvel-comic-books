@@ -39,8 +39,8 @@ const getAddressFromLatLng = (coords: Coords) => {
 }
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '512px',
+  height: '512px'
 }
 
 const center = {
@@ -59,15 +59,20 @@ function EmbeddedMap() {
 
   return (
     <LoaderContainer>
-      <GoogleMap
-        onClick={setAddressFromCoordinates}
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-      >
-        Child components, such as markers, info windows, etc.
-        <></>
-      </GoogleMap>
+      <div className='flex flex-col'>
+        <GoogleMap
+          onClick={setAddressFromCoordinates}
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={10}
+        >
+          Child components, such as markers, info windows, etc.
+          <></>
+        </GoogleMap>
+        <p className='text-gray-600 italic w-100 text-center'>
+          Clique em um endereço no mapa para selecioná-lo
+        </p>
+      </div>
     </LoaderContainer>
   )
 }

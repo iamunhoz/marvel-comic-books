@@ -1,7 +1,14 @@
 /* index.css */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* font-family*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
 #root {
   height: 100vh;

@@ -1,5 +1,5 @@
-import { useAtom, useSetAtom } from 'jotai'
-import { loadableComicsList, pagination } from 'state'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { comicsSearchValue, loadableComicsList, pagination } from 'state'
 import { ComicsCard, Loading, Error } from 'components'
 import { useEffect, useState } from 'react'
 import { Comics } from 'api/types'
@@ -25,6 +25,8 @@ export const useEndOfPageObserver = () => {
 
 export function Main(): JSX.Element {
   const [asyncComicsList] = useAtom(loadableComicsList)
+  const [searchValue] = useAtom(comicsSearchValue)
+  const [prevSearchValue, setPrevSearchValue] = useState('')
   const [comics, setComics] = useState<Comics[]>([])
 
   useEndOfPageObserver()
@@ -37,8 +39,21 @@ export function Main(): JSX.Element {
 
   if (asyncComicsList.state === 'hasError') return <Error />
 
+  useEffect(() => {
+    if (searchValue !== prevSearchValue) {
+      setComics([])
+      setPrevSearchValue(searchValue)
+    }
+  }, [searchValue, searchValue])
+
   return (
-    <main className='grid gap-4 grid-cols-4'>
+    <main
+      className={
+        !comics.length
+          ? '100vh flex flex-col justify-center'
+          : 'grid gap-4 grid-cols-4'
+      }
+    >
       {comics.map((comics) => (
         <ComicsCard comics={comics} key={comics.id} />
       ))}
