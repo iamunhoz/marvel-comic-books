@@ -51,7 +51,7 @@ export function Main(): JSX.Element {
       className={
         !comics.length
           ? '100vh flex flex-col justify-center'
-          : 'grid gap-4 grid-cols-4'
+          : 'grid gap-4 grid-cols-4 mt-14 mx-2'
       }
     >
       {comics.map((comics) => (
