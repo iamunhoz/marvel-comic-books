@@ -2,10 +2,12 @@ import { atomWithValidate } from 'jotai-form'
 import * as Yup from 'yup'
 
 const deliverySchema = {
-  email: Yup.string().email().required(),
-  phone: Yup.string().min(10).max(11).required(),
-  name: Yup.string().required(),
-  address: Yup.string().required()
+  email: Yup.string()
+    .email('Insira um email válido')
+    .required('E-mail é obrigatório'),
+  phone: Yup.string().min(10).required('Telefone é obrigatório'),
+  name: Yup.string().required('Nome é obrigatório'),
+  address: Yup.string().required('Endereço é obrigatório')
 }
 
 export const emailAtom = atomWithValidate('', {

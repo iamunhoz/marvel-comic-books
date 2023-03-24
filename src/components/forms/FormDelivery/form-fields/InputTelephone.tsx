@@ -1,10 +1,16 @@
+import { useAtom } from 'jotai'
 import { useState } from 'react'
 import { PatternFormat } from 'react-number-format'
-import { useAtom } from 'jotai'
 import { phoneAtom } from './formState'
+import { GenericInput } from './GenericInput'
 
 export function InputTelephone(): JSX.Element {
   const [phone, setPhone] = useAtom(phoneAtom)
+
+  const setValue = (value: string) => {
+    setPhone(value)
+  }
+
   const initial_length = phone.value ? phone.value.replace(/\D/g, '').length : 0
   const [numberLength, setNumberLength] = useState(initial_length)
 
@@ -17,12 +23,8 @@ export function InputTelephone(): JSX.Element {
         : '(##) #####-####'
   }
 
-  const onFormat = (): void => {
-    setNumberLength(phone.value.length)
-  }
-
-  return (
-    <div>
+  const CustomInput = (className: string) => {
+    return (
       <PatternFormat
         {...config}
         onBlur={onFormat}
@@ -31,14 +33,21 @@ export function InputTelephone(): JSX.Element {
           setPhone(evt.target.value)
         }}
         onClick={() => setNumberLength(0)}
+        className={className}
       />
+    )
+  }
 
-      {!phone.isValidating && phone.isDirty && (
-        <div>
-          <span>{phone.isValid && 'Valid'}</span>
-          <span>{!phone.isValid && `${phone.error}`}</span>
-        </div>
-      )}
-    </div>
+  const onFormat = (): void => {
+    setNumberLength(phone.value.length)
+  }
+
+  return (
+    <GenericInput
+      setValue={setValue}
+      title='Telefone'
+      value={phone}
+      customInput={CustomInput}
+    />
   )
 }

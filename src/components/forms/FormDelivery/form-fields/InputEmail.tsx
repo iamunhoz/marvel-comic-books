@@ -1,18 +1,13 @@
 import { useAtom } from 'jotai'
 import { emailAtom } from './formState'
+import { GenericInput } from './GenericInput'
 
 export function InputEmail() {
   const [email, setEmail] = useAtom(emailAtom)
 
-  return (
-    <div>
-      <input value={email.value} onChange={(e) => setEmail(e.target.value)} />
-      {!email.isValidating && email.isDirty && (
-        <div>
-          <span>{email.isValid && 'Valid'}</span>
-          <span>{!email.isValid && `${email.error}`}</span>
-        </div>
-      )}
-    </div>
-  )
+  const setValue = (value: string) => {
+    setEmail(value)
+  }
+
+  return <GenericInput setValue={setValue} title='E-mail' value={email} />
 }
